@@ -25,7 +25,22 @@ jobs:
         cache: 'npm'
     - name: Install program dependancies
       run: npm install
-    - name: Start the app
-      run: npm start &
     - name: Run integration tests
       run: npm run test
+  security_test:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - name: Clone the GitHub repository on the machine
+      uses: actions/checkout@v4
+    - name: Use Node.js v23.8.0.
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+    - name: Install program dependancies
+      run: npm install
+    - name: Run security tests
+      run: npm audit
